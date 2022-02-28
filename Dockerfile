@@ -16,4 +16,4 @@ RUN npm install --production=true
 COPY . .
 COPY --from=builder /tmp/dist dist/
 EXPOSE 3000
-RUN npm start
+CMD ["npm", "start"]
