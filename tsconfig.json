@@ -9,5 +9,5 @@
     "strict": true /* Enable all strict type-checking options. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "exclude": ["node_modules", "dist", "__test__", "scripts", "__mocks__"]
+  "exclude": ["node_modules", "dist", "__test__", "__mocks__"]
 }
