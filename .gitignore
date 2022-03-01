@@ -4,3 +4,5 @@ test
 mozu.config.json
 .env
 dist
+.yalc
+yalc.lock
