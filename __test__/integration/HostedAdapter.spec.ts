@@ -5,8 +5,17 @@ import request from 'supertest'
 
 describe('Kibo Payment Gateway - Hosted Adapter ', () => {
   const factory = new CustomAdapterFactory()
-  const server = host(factory)
+  let server: any
 
+  beforeAll((done) => {
+    server = host(factory)
+    done()
+  })
+  afterAll((done) => {
+    server.close(() => {
+      done()
+    })
+  })
   it('should POST to /authorize gateway host', async () => {
     const mockAuthorize = jest
       .spyOn(CustomGatewayAdapter.prototype, 'authorize')
