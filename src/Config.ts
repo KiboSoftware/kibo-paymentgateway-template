@@ -8,14 +8,9 @@ const config = convict({
     env: 'NODE_ENV',
   },
   settings: {
-    merchantId: {
+    apiBasePath: {
       doc: 'Example payment gateway setting',
       default: '',
-    },
-    gatewaySecret: {
-      doc: 'Example payment gateway setting from env',
-      default: '',
-      env: 'GATEWAY_API_SECRECT',
     },
   },
 })

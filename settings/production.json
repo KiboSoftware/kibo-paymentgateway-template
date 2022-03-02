@@ -1,5 +1,5 @@
 {
   "settings": {
-    "merchantId": "123456"
+    "apiBasePath": ""
   }
 }
