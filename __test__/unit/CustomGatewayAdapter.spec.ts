@@ -1,21 +1,23 @@
 import { CustomGatewayAdapter } from '../../src/CustomGatewayAdapter'
 import { mockAdapterContext } from '../../__mocks__/AdapterContext'
-
-const createAdapter = (context = {}, logger = {}) => new CustomGatewayAdapter(context, logger)
+import { mockLoggerFactory } from '../../__mocks__/LoggerFactory'
+const createAdapter = (context = {}, logger = mockLoggerFactory()) =>
+  new CustomGatewayAdapter(context, logger)
 
 describe('Kibo Payment Gateway - Custom Gateway Adapter', () => {
   it('should create custom gateway adapter', () => {
     const adapter = createAdapter(mockAdapterContext)
     expect(adapter.context).toEqual(mockAdapterContext)
-    expect(adapter.logger).toEqual({})
   })
 
   it('should call custom gateway adapter method - authorize', async () => {
     const mockRequest = {}
     const mockResponse = {}
-
     const adapter = createAdapter(mockAdapterContext)
     await expect(adapter.authorize(mockRequest)).rejects.toThrow()
+    //const ret = await adapter.authorize(mockRequest)
+    //expect(ret).not.toBeNull()
+    //add more assertions
   })
 
   it('should call custom gateway adapter method - authorizeWithToken', async () => {
@@ -39,7 +41,7 @@ describe('Kibo Payment Gateway - Custom Gateway Adapter', () => {
     const mockResponse = {}
 
     const adapter = createAdapter(mockAdapterContext)
-    await expect(adapter.authorize(mockRequest)).rejects.toThrow()
+    await expect(adapter.credit(mockRequest)).rejects.toThrow()
   })
 
   it('should call custom gateway adapter method - void', async () => {

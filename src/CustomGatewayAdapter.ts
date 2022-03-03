@@ -1,5 +1,4 @@
 import type {
-  AdapterFactory,
   AdapterContext,
   PaymentGatwayAdapter,
   CaptureRequest,
@@ -14,24 +13,26 @@ import type {
   GatewayGiftCardCreateRequest,
   GatewayGiftCardCreateResponse,
   GatewayVoidResponse,
+  Logger,
 } from '@kibocommerce/kibo-paymentgateway-hosting'
 import type { CustomAdapterSettings } from './types'
 export class CustomGatewayAdapter implements PaymentGatwayAdapter {
   context: AdapterContext
-  logger: any
+  logger: Logger
   settings?: CustomAdapterSettings
-  constructor(context: AdapterContext, logger: any, settings?: CustomAdapterSettings) {
+  constructor(context: AdapterContext, logger: Logger, settings?: CustomAdapterSettings) {
     this.context = context
     this.logger = logger
     this.settings = settings
   }
   async authorize(request: GatewayAuthorizationRequest): Promise<GatewayAuthorizeResponse> {
-    // example response
-    // return {
-    //   authCode: "CAPTURED",
-    //   responseCode: "food",
-    //   responseText : "Captured via CustomGatewayAdapter"
-    // };
+    //   this.logger.info('info message');
+    //   example response
+    //   return {
+    //     authCode: "CAPTURED",
+    //     responseCode: "food",
+    //     responseText : "Captured via CustomGatewayAdapter"
+    //   };
     throw new Error('Method not implemented.')
   }
   async authorizeWithToken(

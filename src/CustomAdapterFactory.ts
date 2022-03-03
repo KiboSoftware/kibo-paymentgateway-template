@@ -2,6 +2,7 @@ import {
   AdapterFactory,
   AdapterContext,
   PaymentGatwayAdapter,
+  Logger,
 } from '@kibocommerce/kibo-paymentgateway-hosting'
 import { CustomGatewayAdapter } from './CustomGatewayAdapter'
 import type { CustomAdapterSettings } from './types'
@@ -10,7 +11,7 @@ export class CustomAdapterFactory implements AdapterFactory<CustomAdapterSetting
   constructor(settings?: CustomAdapterSettings) {
     this.settings = settings
   }
-  createAdapter(context: AdapterContext, logger: any): PaymentGatwayAdapter {
+  createAdapter(context: AdapterContext, logger: Logger): PaymentGatwayAdapter {
     return new CustomGatewayAdapter(context, logger, this.settings)
   }
 }
