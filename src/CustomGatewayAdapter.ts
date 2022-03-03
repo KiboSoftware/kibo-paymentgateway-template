@@ -15,13 +15,15 @@ import type {
   GatewayGiftCardCreateResponse,
   GatewayVoidResponse,
 } from '@kibocommerce/kibo-paymentgateway-hosting'
-
+import type { CustomAdapterSettings } from './types'
 export class CustomGatewayAdapter implements PaymentGatwayAdapter {
   context: AdapterContext
   logger: any
-  constructor(context: AdapterContext, logger: any) {
+  settings?: CustomAdapterSettings
+  constructor(context: AdapterContext, logger: any, settings?: CustomAdapterSettings) {
     this.context = context
     this.logger = logger
+    this.settings = settings
   }
   async authorize(request: GatewayAuthorizationRequest): Promise<GatewayAuthorizeResponse> {
     // example response
