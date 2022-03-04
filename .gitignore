@@ -6,3 +6,4 @@ mozu.config.json
 dist
 .yalc
 yalc.lock
+coverage

@@ -83,4 +83,20 @@ describe('Kibo Payment Gateway - Custom Gateway Adapter', () => {
     const adapter = createAdapter(mockAdapterContext)
     await expect(adapter.getBalance(mockRequest)).rejects.toThrow()
   })
+
+  it('should call custom gateway adapter method - validateAuthTransaction', async () => {
+    const mockRequest = {}
+    const mockResponse = {}
+
+    const adapter = createAdapter(mockAdapterContext)
+    await expect(adapter.validateAuthTransaction(mockRequest)).rejects.toThrow()
+  })
+
+  it('should call custom gateway adapter method - getAuthorizationIDKeyName', async () => {
+    const mockRequest = {}
+    const mockResponse = {}
+
+    const adapter = createAdapter(mockAdapterContext)
+    await expect(adapter.getAuthorizationIDKeyName()).rejects.toThrow()
+  })
 })
