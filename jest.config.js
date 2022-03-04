@@ -7,6 +7,6 @@ module.exports = {
   },
   coverageDirectory: './coverage/',
   collectCoverageFrom: ['src/**/*.ts'],
-  collectCoverage: false,
+  collectCoverage: true,
   testMatch: ['<rootDir>/__test__/**/*spec.ts'],
 }
