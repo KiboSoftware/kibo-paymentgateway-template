@@ -14,6 +14,9 @@ import type {
   GatewayGiftCardCreateResponse,
   GatewayVoidResponse,
   Logger,
+  AuthorizeIdKeyNameResponse,
+  GatewayInteraction,
+  ValidateResponse,
 } from '@kibocommerce/kibo-paymentgateway-hosting'
 import type { CustomAdapterSettings } from './types'
 export class CustomGatewayAdapter implements PaymentGatwayAdapter {
@@ -65,6 +68,12 @@ export class CustomGatewayAdapter implements PaymentGatwayAdapter {
   async getBalance(
     request: GatewayGetGiftCardBalanceRequest
   ): Promise<GatewayGetGiftCardBalanceResponse> {
+    throw new Error('Method not implemented.')
+  }
+  async validateAuthTransaction(request: GatewayInteraction): Promise<ValidateResponse> {
+    throw new Error('Method not implemented.')
+  }
+  async getAuthorizationIDKeyName(): Promise<AuthorizeIdKeyNameResponse> {
     throw new Error('Method not implemented.')
   }
 }
