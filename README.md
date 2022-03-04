@@ -1,48 +1,68 @@
-# Node.js Payment Extensibility Host Pacakge
+# Node.js Payment Extensibility Template
 
-This is an example payment gateway adapter that can be used with the Kibo UCP. The main branch of this repo should always work as a No-Op gateway so that you can start with a working app and develop from there.
+This repo is designed to be the starting point for your Kibo Payment Gateway Adapter.
 
-## Configuration
+```
+.
+├── .github/
+│   └── worflows
+├── .husky
+├── __mocks__
+├── __tests__                     <-- add/update tests here
+├── settings/
+│   ├── production.json           <-- environmental configuration here
+│   └── sandbox.json
+└── src/
+    ├── types
+    ├── config.ts
+    ├── CustomAdapterFactory.ts
+    └── CustomGatewayAdapter.ts    <--Implement business logic here
+```
 
 ### Implement the PaymentGatwayAdapter interface
 
-```
-import { PaymentGatwayAdapter,AdapterContext,GatewayAuthorizationRequest,GatewayAuthorizeResponse} from "@kibocommerce/kibo-paymentgateway-hosting/types/index";
+```js
+ async authorize(request: GatewayAuthorizationRequest):
+    Promise<GatewayAuthorizeResponse> {
 
-class MyService implements PaymentGatwayAdapter {
-  context: AdapterContext;
-  logger: any;
-  constructor(context: AdapterContext, logger: any) {
-    this.context = context;
-    this.logger = logger;
+    // grab the admin settings / credentials from the context
+    const merchantId = this.context.settings?.find(x=> x.key === 'merchantId')?.value;
+    const merchantSecret = this.context.settings?.find(x=> x.key === 'secret')?.value;
+
+    this.logger.info('info message');
+    //call the underlying extrenal gateway
+    const gatewayResonse = await callRealGateway(
+      merchantId,
+      merchantSecret,
+      request?.card ,
+      request.amount ,
+      request.shopper?.contact?.lastname);
+    //transform and return the GatewayAuthorizeResponse
+    return {
+      authCode: 'AUTHORIZED',
+      responseCode: 'Success',
+      responseData:[
+        {
+          key:"somedata",
+          value:"somevalue"
+        }]
+      }
   }
-  async authorize(
+  async authorizeWithToken(
     request: GatewayAuthorizationRequest
   ): Promise<GatewayAuthorizeResponse> {
-    return {
-        authCode:"go"
-    }
+    ...
   }
-  ...
-}
 
 ```
 
-### Creeate a factory
+## The following table describes the success/failure codes:
 
-```
-import { AdapterFactory} from "@kibocommerce/kibo-paymentgateway-hosting/types/index";
-class MyFactory implements AdapterFactory {
-  createAdapter(context: AdapterContext, logger: any): PaymentGatwayAdapter {
-    return new MyService(context, logger);
-  }
-}
-```
-
-### Pass the factory to the host
-
-```
-import host from "@kibocommerce/kibo-paymentgateway-hosting"
-
-host(factory);
-```
+| Code     | Meaning                                                                                                                                                                                          |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Success  | Returned when a valid request is successfully processed. Note: Your payment gateway may have multiple success codes that will need to be mapped                                                  |
+| Timeout  | Returned when a request times out before it is finished processing.                                                                                                                              |
+| Reject   | Sent when a valid transaction is processed but gets rejected. For example, when a credit card payment is successfully processed but the credit card has insufficient funds to cover the payment. |
+| Unauth   | Returned when your request does not have valid authorization credentials.                                                                                                                        |
+| Error    | Returned if you submit an invalid request.                                                                                                                                                       |
+| NotFound | Returned when the gateway cannot be found.                                                                                                                                                       |
