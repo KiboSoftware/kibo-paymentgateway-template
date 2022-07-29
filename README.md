@@ -1,5 +1,16 @@
 # Node.js Payment Extensibility Template
 
+
+## View the Walk Thru
+The below walk thru takes you thru implementing an example Kibo Payment Extensibility Gateway Adapter
+
+[![Watch the video](http://i3.ytimg.com/vi/3hTukdFwa5U/hqdefault.jpg)](https://youtu.be/3hTukdFwa5U)
+
+## Support Docs
+
+* [Payment Extensiblity Intro](https://kibocommerce.helpjuice.com/302040-payment-settings/33-payment-extensibility).
+* [Payment Extensiblity Primer](https://kibocommerce.helpjuice.com/302040-payment-settings/33-payment-extensibility-starter-kit).
+
 This repo is designed to be the starting point for your Kibo Payment Gateway Adapter.
 
 ```
@@ -18,6 +29,8 @@ This repo is designed to be the starting point for your Kibo Payment Gateway Ada
     ├── CustomAdapterFactory.ts
     └── CustomGatewayAdapter.ts    <--Implement business logic here
 ```
+
+
 
 ### Implement the PaymentGatwayAdapter interface
 
