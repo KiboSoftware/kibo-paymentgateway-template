@@ -18,6 +18,8 @@ import type {
   GatewayInteraction,
   ValidateResponse,
 } from '@kibocommerce/kibo-paymentgateway-hosting'
+import { SessionRequest } from '@kibocommerce/kibo-paymentgateway-hosting/dist/types/models/SessionRequest'
+import { SessionResponse } from '@kibocommerce/kibo-paymentgateway-hosting/dist/types/models/SessionResponse'
 import type { CustomAdapterSettings } from './types'
 export class CustomGatewayAdapter implements PaymentGatwayAdapter {
   context: AdapterContext
@@ -74,6 +76,9 @@ export class CustomGatewayAdapter implements PaymentGatwayAdapter {
     throw new Error('Method not implemented.')
   }
   async getAuthorizationIDKeyName(): Promise<AuthorizeIdKeyNameResponse> {
+    throw new Error('Method not implemented.')
+  }
+  async session(request: SessionRequest): Promise<SessionResponse> {
     throw new Error('Method not implemented.')
   }
 }
