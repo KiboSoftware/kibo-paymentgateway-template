@@ -1,0 +1,17 @@
+authtoken: <your ngrok auth token here>
+connect_timeout: 30s
+console_ui: true
+console_ui_color: transparent
+dns_resolver_ips:
+  - 1.1.1.1
+  - 8.8.8.8
+remote_management: false
+version: 2
+web_addr: 0.0.0.0:4040
+tunnels:
+  payment-gateway:
+    addr: 3000
+    inspect: false
+    proto: http
+    schemes:
+      - https
