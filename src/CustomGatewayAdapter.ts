@@ -63,8 +63,8 @@ export class CustomGatewayAdapter implements PaymentGatwayAdapter {
     throw new Error('Method not implemented.')
   }
   async createGiftCard(
-    request: GatewayGiftCardCreateResponse
-  ): Promise<GatewayGiftCardCreateRequest> {
+    request: GatewayGiftCardCreateRequest
+  ): Promise<GatewayGiftCardCreateResponse> {
     throw new Error('Method not implemented.')
   }
   async getBalance(
